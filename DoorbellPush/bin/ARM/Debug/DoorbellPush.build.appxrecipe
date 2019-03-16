@@ -385,6 +385,9 @@
     <AppxPackagedFile Include="C:\Users\Bhairav Pardiwala\.nuget\packages\system.xml.xmlserializer\4.0.11\lib\netcore50\System.Xml.XmlSerializer.dll">
       <PackagePath>System.Xml.XmlSerializer.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Bhairav Pardiwala\Documents\Visual Studio 2017\Projects\DoorbellPush\DoorbellPush\API.txt">
+      <PackagePath>API.txt</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Bhairav Pardiwala\Documents\Visual Studio 2017\Projects\DoorbellPush\DoorbellPush\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
     </AppxPackagedFile>

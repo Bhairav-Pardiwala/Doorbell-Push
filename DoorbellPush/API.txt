@@ -1,0 +1,73 @@
+﻿<?php
+#php api file
+$isSent=false;
+try
+{
+
+require("class.phpmailer.php");
+
+if(strcmp($_SERVER['REQUEST_METHOD'],'POST')!=0)
+{
+    header("HTTP/1.0 404 Not Found");
+    return;
+}
+
+$content = trim(file_get_contents("php://input"));
+
+$decoded = json_decode($content, true);
+
+if(isset($decoded["secret"]) && $decoded["secret"]=="Some iot Secret")
+{
+
+
+    $mail = new PHPMailer(); // create a new object
+
+    $mail->IsSMTP(); // enable SMTP
+
+    $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+
+    $mail->SMTPAuth = true; // authentication enabled
+
+    $mail->SMTPSecure = 'tls'; // secure transfer enabled REQUIRED for Gmail
+
+    $mail->Host = "smtp.gmail.com";
+
+    $mail->Port = 587; // or 587
+
+    $mail->IsHTML(true);
+
+
+    $mail->Username = "Someusername@gmail.com";
+    $mail->Password = "password";
+    $mail->SetFrom("soemone@gmail.com");
+    $mail->Subject = "At the door";
+    $mail->Body ="Somebodys At the door".rand();
+    $mail->AddAddress("someone@gmail.com");
+
+     if(!$mail->Send()) {
+        echo "Mailer Error: " . $mail->ErrorInfo;
+echo "OK";
+     } else {
+         $resp=array("message" =>"Ok");
+        echo json_encode($resp);
+           $isSent=TRUE;
+
+     }
+
+
+
+}
+
+}
+catch (Exception $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+}
+
+   
+
+
+
+
+
+?>
+
